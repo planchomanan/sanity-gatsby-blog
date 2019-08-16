@@ -6,10 +6,14 @@ import {
   filterOutDocsPublishedInTheFuture
 } from '../lib/helpers'
 import BlogPostPreviewList from '../components/blog-post-preview-list'
+import BlogPostPreviewGrid from '../components/blog-post-preview-grid'
+
+import LandingTopComponent from '../components/mip-landing-top-component'
 import Container from '../components/container'
 import GraphQLErrorList from '../components/graphql-error-list'
 import SEO from '../components/seo'
 import Layout from '../containers/layout'
+import styled from "styled-components"
 
 export const query = graphql`
   fragment SanityImage on SanityMainImage {
@@ -95,10 +99,11 @@ const IndexPage = props => {
         description={site.description}
         keywords={site.keywords}
       />
+    <LandingTopComponent/>
       <Container>
         <h1 hidden>Welcome to {site.title}</h1>
         {postNodes && (
-          <BlogPostPreviewList
+          <BlogPostPreviewGrid
             title='Latest blog posts'
             nodes={postNodes}
             browseMoreHref='/archive/'
